@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>FV report — Answer</title>
+<style>:root {
+    --bg: #ffffff;
+    --fg: #1d2125;
+    --muted-fg: #5b6770;
+    --border: #e4e8ec;
+    --bg-card: #fafbfc;
+    --bg-pre: #f4f6f8;
+    --link: #1a73e8;
+    --ok-fg: #0a6b2a;
+    --ok-bg: #e6f6ec;
+    --bad-fg: #a8071a;
+    --bad-bg: #fde7e9;
+    --warn-fg: #8a5500;
+    --warn-bg: #fff1d6;
+    --info-fg: #054a8c;
+    --info-bg: #e3effb;
+    --muted-bg: #eef0f3;
+}
+* { box-sizing: border-box; }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                 "Helvetica Neue", Arial, sans-serif;
+    color: var(--fg);
+    background: var(--bg);
+    margin: 0;
+    padding: 0;
+    line-height: 1.5;
+    font-size: 14px;
+}
+.container {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 32px 28px 48px;
+}
+header.report-head {
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 16px;
+    margin-bottom: 28px;
+}
+header.report-head h1 {
+    margin: 0 0 4px;
+    font-size: 24px;
+    font-weight: 600;
+}
+header.report-head .subtitle {
+    color: var(--muted-fg);
+    font-size: 13px;
+}
+.meta-grid {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 4px 18px;
+    margin-top: 14px;
+    font-size: 13px;
+}
+.meta-grid dt {
+    color: var(--muted-fg);
+    font-weight: 500;
+    margin: 0;
+}
+.meta-grid dd {
+    margin: 0;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+    font-size: 12.5px;
+    word-break: break-all;
+}
+.counts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 14px;
+}
+.count-chip {
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 3px 12px;
+    font-size: 12.5px;
+    color: var(--muted-fg);
+    background: var(--bg-card);
+}
+.count-chip strong {
+    color: var(--fg);
+    margin-right: 4px;
+}
+section.prop {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 18px 20px;
+    margin-bottom: 16px;
+}
+section.prop h2 {
+    margin: 0 0 6px;
+    font-size: 16px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+section.prop h2 .id {
+    color: var(--muted-fg);
+    font-weight: 500;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+}
+section.prop .desc {
+    color: var(--fg);
+    margin: 8px 0 12px;
+}
+section.prop .slug {
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+    font-size: 11.5px;
+    color: var(--muted-fg);
+}
+.badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    padding: 2px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+.badge-ok    { color: var(--ok-fg);    background: var(--ok-bg); }
+.badge-bad   { color: var(--bad-fg);   background: var(--bad-bg); }
+.badge-warn  { color: var(--warn-fg);  background: var(--warn-bg); }
+.badge-info  { color: var(--info-fg);  background: var(--info-bg); }
+.badge-muted { color: var(--muted-fg); background: var(--muted-bg); }
+table.rules {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 4px;
+    font-size: 13px;
+}
+table.rules th, table.rules td {
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    padding: 8px 10px;
+    vertical-align: top;
+}
+table.rules th {
+    color: var(--muted-fg);
+    font-weight: 500;
+    background: var(--bg);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+table.rules td.col-name {
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+    font-size: 12.5px;
+    white-space: nowrap;
+    width: 1%;
+}
+table.rules td.col-status {
+    white-space: nowrap;
+    width: 1%;
+}
+table.rules td.col-link {
+    width: 1%;
+    white-space: nowrap;
+}
+table.rules td.col-link a {
+    color: var(--link);
+    text-decoration: none;
+    font-size: 12px;
+}
+table.rules td.col-link a:hover { text-decoration: underline; }
+details.appendix {
+    margin-top: 36px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 20px;
+    background: var(--bg-card);
+}
+details.appendix summary {
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 15px;
+}
+details.appendix table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 14px;
+    font-size: 13px;
+}
+details.appendix table th,
+details.appendix table td {
+    text-align: left;
+    padding: 6px 10px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+}
+details.appendix table th {
+    color: var(--muted-fg);
+    font-weight: 500;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+details.appendix h3 {
+    margin: 18px 0 6px;
+    font-size: 14px;
+    font-weight: 600;
+}
+.sort-tag {
+    display: inline-block;
+    padding: 1px 7px;
+    border-radius: 3px;
+    background: var(--bg-pre);
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+    font-size: 11px;
+    color: var(--muted-fg);
+}
+footer.report-foot {
+    margin-top: 36px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--muted-fg);
+}
+.warnings {
+    background: var(--warn-bg);
+    color: var(--warn-fg);
+    border-radius: 6px;
+    padding: 10px 14px;
+    margin: 14px 0;
+    font-size: 13px;
+}
+.warnings ul { margin: 4px 0 0 18px; padding: 0; }
+</style>
+</head>
+<body>
+<div class="container">
+<header class="report-head">
+  <h1>Formal verification report — Answer</h1>
+  <div class="subtitle">
+    2 property formulations &middot;
+    4 CVL rules &middot;
+    2 implemented properties
+  </div>
+  <dl class="meta-grid"><dt>Contract</dt><dd>Answer</dd><dt>Schema version</dt><dd>1.0</dd><dt>Run timestamp</dt><dd>2026-06-15T16:33:58.040099+00:00</dd><dt>Prover runs</dt><dd><a href="https://vaas-dev.certora.com/output/60724/a67a7c67344c491b80b996a0527f5563?anonymousKey=58101fa7237d249d8e2ae16091b956d9ab84592b" target="_blank" rel="noopener">Structural Invariants</a> <a href="https://vaas-dev.certora.com/output/60724/18ce1a86cf2d446f9895bf655f69cf9a?anonymousKey=db228d8ffbf1cd7a9fdd30138c436d99d9954fac" target="_blank" rel="noopener">theAnswer Function</a></dd></dl>
+  <div style="margin-top:14px;font-size:12px;color:var(--muted-fg);">Rule outcomes:</div>
+  <div class="counts"><span class="count-chip"><span class="badge badge-ok">VERIFIED</span> <strong>4</strong></span></div>
+  <div style="margin-top:8px;font-size:12px;color:var(--muted-fg);">High-level property outcomes:</div>
+  <div class="counts"><span class="count-chip"><span class="badge badge-ok">VERIFIED</span> <strong>2</strong></span></div>
+</header>
+
+
+<section class="prop" id="env-free-static-purity">
+  <h2><span class="id">env-free-static-purity</span> Environment-Free and Pure Function Static Checks <span class="badge badge-ok">VERIFIED</span></h2>
+  <p class="desc">All declared environment-free functions are verified to be truly static, confirming they depend on no environmental or blockchain state. This structural property ensures the contract&#x27;s pure functions cannot be influenced by caller identity, block parameters, or other transaction context.</p>
+  <table class="rules">
+    <thead><tr><th>Rule</th><th>Status</th><th>Description</th><th></th></tr></thead>
+    <tbody><tr><td class="col-name">envfreeFuncsStaticCheck<span style="color:var(--muted-fg)">:4</span></td><td class="col-status"><span class="badge badge-ok">VERIFIED</span></td><td><span style="color:var(--muted-fg)">(no inferred description)</span></td><td class="col-link"><a href="https://vaas-dev.certora.com/output/60724/18ce1a86cf2d446f9895bf655f69cf9a?anonymousKey=db228d8ffbf1cd7a9fdd30138c436d99d9954fac" target="_blank" rel="noopener">prover run</a></td></tr></tbody>
+  </table>
+</section>
+
+<section class="prop" id="the-answer-constant-return-value">
+  <h2><span class="id">the-answer-constant-return-value</span> theAnswer() Invariantly Returns the Constant 42 <span class="badge badge-ok">VERIFIED</span></h2>
+  <p class="desc">The function theAnswer() always returns exactly 42, regardless of caller, block state, transaction history, or any other environmental condition. Because the contract has no state variables and the function is pure, this return value is an unconditional invariant of the system.</p>
+  <table class="rules">
+    <thead><tr><th>Rule</th><th>Status</th><th>Description</th><th></th></tr></thead>
+    <tbody><tr><td class="col-name">theAnswer_returns_42<span style="color:var(--muted-fg)">:9</span></td><td class="col-status"><span class="badge badge-ok">VERIFIED</span></td><td>The function theAnswer() always returns the constant value 42. Since the contract has no state variables and the function is pure, its return value is invariantly 42 regardless of any transaction history or contract state.</td><td class="col-link"><a href="https://vaas-dev.certora.com/output/60724/a67a7c67344c491b80b996a0527f5563?anonymousKey=58101fa7237d249d8e2ae16091b956d9ab84592b" target="_blank" rel="noopener">prover run</a></td></tr><tr><td class="col-name">the_answer_returns_42<span style="color:var(--muted-fg)">:10</span></td><td class="col-status"><span class="badge badge-ok">VERIFIED</span></td><td>The function theAnswer() must always return the value 42, regardless of the caller, block state, or any other environmental condition.</td><td class="col-link"><a href="https://vaas-dev.certora.com/output/60724/18ce1a86cf2d446f9895bf655f69cf9a?anonymousKey=db228d8ffbf1cd7a9fdd30138c436d99d9954fac" target="_blank" rel="noopener">prover run</a></td></tr></tbody>
+  </table>
+</section>
+
+<details class="appendix"><summary>Property formulation index — 2 properties across 2 components</summary>
+<h3>Structural Invariants (1 properties)</h3>
+<table>
+<thead><tr><th>Property</th><th>Sort</th><th>Description</th><th>Implemented by</th></tr></thead><tbody>
+<tr><td><code>theAnswer_returns_42</code></td><td><span class="sort-tag">invariant</span></td><td>The function theAnswer() always returns the constant value 42. Since the contract has no state variables and the function is pure, its return value is invariantly 42 regardless of any transaction history or contract state.</td><td><code>theAnswer_returns_42</code></td></tr>
+</tbody></table>
+<h3>theAnswer Function (1 properties)</h3>
+<table>
+<thead><tr><th>Property</th><th>Sort</th><th>Description</th><th>Implemented by</th></tr></thead><tbody>
+<tr><td><code>the_answer_returns_42</code></td><td><span class="sort-tag">safety_property</span></td><td>The function theAnswer() must always return the value 42, regardless of the caller, block state, or any other environmental condition.</td><td><code>the_answer_returns_42</code></td></tr>
+</tbody></table>
+</details>
+<footer class="report-foot">
+  Coverage check: 4 unique rules across 2 high-level
+  properties (1–2 rules each).
+  Coverage complete: <strong>True</strong>;
+  status aggregation consistent: <strong>True</strong>.
+</footer>
+
+</div>
+</body>
+</html>

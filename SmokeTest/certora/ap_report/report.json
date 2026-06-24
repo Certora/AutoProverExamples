@@ -1,0 +1,103 @@
+{
+  "schema_version": "1.0",
+  "contract_name": "Answer",
+  "run_timestamp_utc": "2026-06-15T16:33:58.040099+00:00",
+  "prover_links": {
+    "theAnswer Function": "https://vaas-dev.certora.com/output/60724/18ce1a86cf2d446f9895bf655f69cf9a?anonymousKey=db228d8ffbf1cd7a9fdd30138c436d99d9954fac",
+    "Structural Invariants": "https://vaas-dev.certora.com/output/60724/a67a7c67344c491b80b996a0527f5563?anonymousKey=58101fa7237d249d8e2ae16091b956d9ab84592b"
+  },
+  "rules": [
+    {
+      "name": "envfreeFuncsStaticCheck",
+      "component": "Structural Invariants",
+      "spec_file": "generated_f7c497f668d611f1.spec",
+      "properties": [],
+      "status": "VERIFIED",
+      "line": 4,
+      "duration_seconds": null,
+      "prover_link": "https://vaas-dev.certora.com/output/60724/a67a7c67344c491b80b996a0527f5563?anonymousKey=58101fa7237d249d8e2ae16091b956d9ab84592b"
+    },
+    {
+      "name": "theAnswer_returns_42",
+      "component": "Structural Invariants",
+      "spec_file": "generated_f7c497f668d611f1.spec",
+      "properties": [
+        {
+          "title": "theAnswer_returns_42",
+          "methods": "invariant",
+          "sort": "invariant",
+          "description": "The function theAnswer() always returns the constant value 42. Since the contract has no state variables and the function is pure, its return value is invariantly 42 regardless of any transaction history or contract state.",
+          "component": "Structural Invariants"
+        }
+      ],
+      "status": "VERIFIED",
+      "line": 9,
+      "duration_seconds": 1.0,
+      "prover_link": "https://vaas-dev.certora.com/output/60724/a67a7c67344c491b80b996a0527f5563?anonymousKey=58101fa7237d249d8e2ae16091b956d9ab84592b"
+    },
+    {
+      "name": "envfreeFuncsStaticCheck",
+      "component": "theAnswer Function",
+      "spec_file": "generated_76c8220c68d711f1.spec",
+      "properties": [],
+      "status": "VERIFIED",
+      "line": 4,
+      "duration_seconds": null,
+      "prover_link": "https://vaas-dev.certora.com/output/60724/18ce1a86cf2d446f9895bf655f69cf9a?anonymousKey=db228d8ffbf1cd7a9fdd30138c436d99d9954fac"
+    },
+    {
+      "name": "the_answer_returns_42",
+      "component": "theAnswer Function",
+      "spec_file": "generated_76c8220c68d711f1.spec",
+      "properties": [
+        {
+          "title": "the_answer_returns_42",
+          "methods": [
+            "theAnswer()"
+          ],
+          "sort": "safety_property",
+          "description": "The function theAnswer() must always return the value 42, regardless of the caller, block state, or any other environmental condition.",
+          "component": "theAnswer Function"
+        }
+      ],
+      "status": "VERIFIED",
+      "line": 10,
+      "duration_seconds": 1.0,
+      "prover_link": "https://vaas-dev.certora.com/output/60724/18ce1a86cf2d446f9895bf655f69cf9a?anonymousKey=db228d8ffbf1cd7a9fdd30138c436d99d9954fac"
+    }
+  ],
+  "implemented_properties": [
+    {
+      "slug": "env-free-static-purity",
+      "title": "Environment-Free and Pure Function Static Checks",
+      "description": "All declared environment-free functions are verified to be truly static, confirming they depend on no environmental or blockchain state. This structural property ensures the contract's pure functions cannot be influenced by caller identity, block parameters, or other transaction context.",
+      "status": "VERIFIED",
+      "rule_names": [
+        "envfreeFuncsStaticCheck"
+      ]
+    },
+    {
+      "slug": "the-answer-constant-return-value",
+      "title": "theAnswer() Invariantly Returns the Constant 42",
+      "description": "The function theAnswer() always returns exactly 42, regardless of caller, block state, transaction history, or any other environmental condition. Because the contract has no state variables and the function is pure, this return value is an unconditional invariant of the system.",
+      "status": "VERIFIED",
+      "rule_names": [
+        "theAnswer_returns_42",
+        "the_answer_returns_42"
+      ]
+    }
+  ],
+  "unimplemented_properties": [],
+  "coverage": {
+    "total_property_formulations": 2,
+    "total_rules": 4,
+    "total_groups": 2,
+    "rules_per_group_min": 1,
+    "rules_per_group_max": 2,
+    "rule_coverage_complete": true,
+    "rules_in_multiple_groups": [],
+    "rules_in_no_group": [],
+    "status_aggregation_consistent": true,
+    "warnings": []
+  }
+}
