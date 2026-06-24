@@ -1,8 +1,0 @@
-[
-  {
-    "title": "theAnswer_returns_42",
-    "methods": "invariant",
-    "sort": "invariant",
-    "description": "The function theAnswer() always returns the constant value 42. Since the contract has no state variables and the function is pure, its return value is invariantly 42 regardless of any transaction history or contract state."
-  }
-]

@@ -1,1 +1,0 @@
-Simple specification proving that theAnswer() always returns 42. The contract has a single pure function that returns the constant 42, and the rule directly asserts this. Both the feedback judge and the prover confirmed the specification is correct and verified.
