@@ -1,0 +1,7 @@
+# AI prover local output
+certora/.certora-tools/
+.certora_internal/
+certora_internal/
+.certora_cache/
+certoraBuild/
+certora_build/
